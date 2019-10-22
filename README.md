@@ -1,6 +1,6 @@
 # Low Biomass Background Correction
 
-Author: Philip Burnham
+Author: Philip Burnham (phil.burnham.50@gmail.com)
 
 Link to preprint: https://www.biorxiv.org/content/10.1101/734756v1
 
