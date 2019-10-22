@@ -1,4 +1,4 @@
-###Low Biomass Background Correction
+%Low Biomass Background Correction
 
 Author: Philip Burnham
 
@@ -26,4 +26,20 @@ For the purposes of this tutorial, we avoid providing raw FASTQ files for privac
 
 We also take note of the batches that our samples are in, and the estimated biomass (in ng) of the cell-free DNA we are using in our library preparation. This is our metadata file.
 
-*If you are missing the \*.tblat.1 file, don’t worry! If you didn’t measure your DNA before the library preparation, don’t worry! The pipeline can be altered to ignore these steps (though the corresponding step in filtering will be ignored).*
+*If you are missing the .tblat.1 file, don’t worry! If you didn’t measure your DNA before the library preparation, don’t worry! The pipeline can be altered to ignore these steps (though the corresponding step in filtering will be ignored).*
+
+
+Step 1: Setting up the LBBC package
+
+Fork, clone, and download the Github directory to your prefered location.
+Start a new R session and open up the file ________
+Install the following packages if not already present:
+ineq, ggplot2, ggpubr, MASS, devtools, reshape2 ,taxize
+S
+
+et working directory to the top-level of the LBBC directory
+Install the package as follows:
+Load your \*.grammy.tab file
+In this case we will use a combined grammy file that contains all samples. If you don’t have this at this point, copy all \*.grammy.tab files into one folder and run the following from the command line from that directory:
+
+"cat \*.grammy.tab | sort | uniq > /path/to/LBBC/Project.grammy.tab"
