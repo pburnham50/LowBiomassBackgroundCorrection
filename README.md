@@ -18,7 +18,7 @@ We have implemented a bioinformatics pipeline that: 1) removes low quality DNA r
 
 From this pipeline we collect two important files:
 
-The alignment statistics of each nonhuman read to a microbe (\*.tblat.1)
+The alignment statistics of each nonhuman read to a microbe using NCBI BLAST (\*.tblat.1).
 
 The phylogeny and abundance table that shows the microbiome estimated from all nonhuman reads (\*.grammy.tab).
 
@@ -54,4 +54,4 @@ cat *.grammy.tab | sort | uniq > /path/to/LBBC/Project.grammy.tab
 ### Acknowledgments
 
 Iwijn De Vlaminck (Cornell University) - development of methodology.
-Alexandre Cheng (Cornell University) - software validation.
+Alexandre Pellan Cheng (Cornell University) - software validation.
