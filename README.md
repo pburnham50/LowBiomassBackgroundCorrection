@@ -14,7 +14,7 @@ The pipeline is implemented in R, and takes advantage of two observations: 1) th
 
 ### Step 0: Collecting the needed files
 
-Prior to implementing this algorithm, we have implemented a bioinformatics pipeline that: 1) removes low quality DNA reads, 2) aligns reads to the human reference genome (UCSC hg19 build), 3) aligns human-unmapped reads to a large microbial genome reference database (NCBI blast), and (4) estimates the abundance of bacteria based on alignment statistics. This pipeline has been used extensively by our lab in a variety of contexts including plasma, urine, amniotic fluid, and peritoneal dialysis effluent (paper coming).
+We have implemented a bioinformatics pipeline that: 1) removes low quality DNA reads, 2) aligns reads to the human reference genome (UCSC hg19 build), 3) aligns human-unmapped reads to a large microbial genome reference database (NCBI blast), and (4) estimates the abundance of bacteria based on alignment statistics. This pipeline has been used extensively by our lab in a variety of contexts including plasma, urine, amniotic fluid, and peritoneal dialysis effluent (paper coming).
 
 From this pipeline we collect two important files:
 
@@ -30,17 +30,21 @@ We also take note of the batches that our samples are in, and the estimated biom
 *If you are missing the .tblat.1 file, don’t worry! If you didn’t measure your DNA before the library preparation, don’t worry! The pipeline can be altered to ignore these steps (though the corresponding step in filtering will be ignored).*
 
 
-### Step 1: Setting up the LBBC package
+### Step 1: Installing the LBBC package
 
 Fork, clone, and download the Github directory to your prefered location.
 Start a new R session and open up the file ________
 Install the following packages if not already present:
 ineq, ggplot2, ggpubr, MASS, devtools, reshape2 ,taxize
-S
 
-et working directory to the top-level of the LBBC directory
+
+Set working directory to the top-level of the LBBC directory
 Install the package as follows:
 Load your \*.grammy.tab file
 In this case we will use a combined grammy file that contains all samples. If you don’t have this at this point, copy all \*.grammy.tab files into one folder and run the following from the command line from that directory:
 
-"cat \*.grammy.tab | sort | uniq > /path/to/LBBC/Project.grammy.tab"
+```
+cat \*.grammy.tab | sort | uniq > /path/to/LBBC/Project.grammy.tab"
+```
+
+### Step 2: Running the LBBC package on a urinary cell-free DNA dataset
