@@ -30,7 +30,7 @@ We also take note of the batches that our samples are in, and the estimated biom
 *If you are missing the .tblat.1 file, don’t worry! If you didn’t measure your DNA before the library preparation, don’t worry! The pipeline can be altered to ignore these steps (though the corresponding step in filtering will be ignored).*
 
 
-### Step 1: Installing the LBBC package
+### Step 1: Installing the LBBC package and preparing files
 
 Fork, clone, and download the Github directory to your prefered location.
 Start a new R session and open up the file ________
@@ -44,7 +44,14 @@ Load your \*.grammy.tab file
 In this case we will use a combined grammy file that contains all samples. If you don’t have this at this point, copy all \*.grammy.tab files into one folder and run the following from the command line from that directory:
 
 ```
-cat \*.grammy.tab | sort | uniq > /path/to/LBBC/Project.grammy.tab"
+cat *.grammy.tab | sort | uniq > /path/to/LBBC/Project.grammy.tab
 ```
 
 ### Step 2: Running the LBBC package on a urinary cell-free DNA dataset
+
+
+
+### Acknowledgments
+
+Iwijn De Vlaminck (Cornell University) - development of methodology.
+Alexandre Cheng (Cornell University) - software validation.
