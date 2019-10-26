@@ -5,7 +5,7 @@
 \title{SetNegativeControl
 This function is used to find the proportion of all taxa present in the negative controls.}
 \usage{
-SetNegativeControl(sample.vector, raw.data.path, tblat.path)
+SetNegativeControl(sample.vector, raw.data.path, tblat.path, table.path)
 }
 \arguments{
 \item{sample.vector}{Vector of sample names. Character vector.}
@@ -13,6 +13,8 @@ SetNegativeControl(sample.vector, raw.data.path, tblat.path)
 \item{raw.data.path}{Pathway to find zipped fastq files. Character.}
 
 \item{tblat.path}{Pathway to alignment files (tblat.1 format). Character.}
+
+\item{table.path}{Pathway to read proportiona table. Character.}
 }
 \description{
 SetNegativeControl

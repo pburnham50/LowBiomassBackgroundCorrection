@@ -10,13 +10,11 @@ ReadProportions(sample, out.path = "./", raw.data.path, tblat.path)
 \arguments{
 \item{sample}{Sample name. Character.}
 
+\item{out.path}{Pathway to .totalreads.tab file. Current directory by default.}
+
 \item{raw.data.path}{Pathway to find zipped fastq files. Character.}
 
 \item{tblat.path}{Pathway to alignment files (tblat.1 format). Character.}
-
-\item{known.number}{Is the total number of raw reads already known? Logical. FALSE by default.}
-
-\item{no.reads}{Number of total raw reads if known.number == T. Numeric. NA by default.}
 }
 \description{
 ReadProportions

@@ -1,8 +1,7 @@
 #' ReadProportions
 #' This function uses the total number of raw reads and BLAST alignment info to determine the proportion of reads from each taxa. This is used for negative control analysis.
 #' @param sample Sample name. Character.
-#' @param known.number Is the total number of raw reads already known? Logical. FALSE by default.
-#' @param no.reads Number of total raw reads if known.number == T. Numeric. NA by default.
+#' @param out.path Pathway to .totalreads.tab file. Current directory by default.
 #' @param raw.data.path Pathway to find zipped fastq files. Character.
 #' @param tblat.path Pathway to alignment files (tblat.1 format). Character.
 #' @keywords proportions

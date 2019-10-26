@@ -13,6 +13,8 @@
 #' @param TaxLevel Taxonomic level to perform analysis. Character. "species" by default.
 #' @param FastqPath Path to raw, gzipped fastqs. Current directory by default.
 #' @param TblatPath Path to tblat files. Current directory by default.
+#' @param TablePath Path to stored proportion tables. Current directory by default.
+#' @param AlnStatsPath Path to CV and other genome stats. Current directory by default.
 #' @param Measurement Name of column in abundance object containing measurements. Character. "RelCoverage" by default.
 #' @param ReturnContams Return contaminants instead of filtered matrix. Logical. FALSE by default.
 #' @keywords denoise
@@ -26,7 +28,7 @@
 DenoiseAlgorithm <- function(AbundanceObject, MetaDataObject, NegativeObject, ReadAbundMatrix,
                                          CV.Filter = T, MassVar.Filter = T, NegCtrl.Filter = T,
                                          deltaCV.Param = 10**5, MassVar.Param = 0, NegCtrl.Param = 0,
-                                         TaxLevel = "genus", FastqPath ="./", TblatPath="./",
+                                         TaxLevel = "genus", FastqPath ="./", TblatPath="./", TablePath="./", AlnStatsPath = "./",
                                          Measurement = "RelCoverage", ReturnContams = F, GITable = "gi_tax_info.tab"){
 
   sample.list = as.character(as.matrix(MetaDataObject$Sample)) ;
@@ -35,11 +37,11 @@ DenoiseAlgorithm <- function(AbundanceObject, MetaDataObject, NegativeObject, Re
 
     CV.filtered.list = c() ;
     for (j in sample.list){
-      CV.filtered.list = rbind(SparseMetagenomicCorrection::AlignStatsSample(Sample = j,BinSize = 10**3,
-                                                                             TblatPath = TblatPath,
-                                                                             GITable = GITable,
-                                                                             MinHits = 5,
-                                                                             OutPath = "tblat_tables/"),
+      CV.filtered.list = rbind(AlignStatsSample(Sample = j,BinSize = 10**3,
+                                                TblatPath = TblatPath,
+                                                GITable = GITable,
+                                                MinHits = 5,
+                                                OutPath = AlnStatsPath),
                                CV.filtered.list) ;
     }
     if(nrow(CV.filtered.list[is.na(CV.filtered.list$Delta.CV),]) > 0){
@@ -111,7 +113,7 @@ DenoiseAlgorithm <- function(AbundanceObject, MetaDataObject, NegativeObject, Re
     for (j in sample.list){
       negative.filters = rbind(negative.filters,
                                FilterWithNegativeControl(sample = j,
-                                                         contam.set = NegativeObject,
+                                                         contam.set = NegativeObject,out.path = TablePath,
                                                          factor.contam = NegCtrl.Param,
                                                          raw.data.path = FastqPath,
                                                          tblat.path = TblatPath))

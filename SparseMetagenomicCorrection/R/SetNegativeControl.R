@@ -3,13 +3,14 @@
 #' @param sample.vector Vector of sample names. Character vector.
 #' @param raw.data.path Pathway to find zipped fastq files. Character.
 #' @param tblat.path Pathway to alignment files (tblat.1 format). Character.
+#' @param table.path Pathway to read proportiona table. Character.
 #' @keywords negatives
 #' @import data.table
 #' @export
 #' @examples
 #' SetNegativeControl()
 
-SetNegativeControl <- function(sample.vector, raw.data.path, tblat.path){
+SetNegativeControl <- function(sample.vector, raw.data.path, tblat.path, table.path){
   #instantiate list of all contaminant taxa
   contam.taxa.list = c()
 
@@ -26,7 +27,7 @@ SetNegativeControl <- function(sample.vector, raw.data.path, tblat.path){
   for ( j in sample.vector){
     tmp.contam.data = SparseMetagenomicCorrection::ReadProportions(sample = j,
                                                                     raw.data.path = raw.data.path,
-                                                                    tblat.path = tblat.path) ;
+                                                                    tblat.path = tblat.path,out.path = table.path) ;
     tmp.contam.data = merge(contam.taxa_all.list, tmp.contam.data, by = "Tax.ID",all.x=T)
     tmp.contam.data[is.na(tmp.contam.data$Frequency),]$Frequency = 0
     tmp.contam.data[is.na(tmp.contam.data$Proportion),]$Proportion = 0

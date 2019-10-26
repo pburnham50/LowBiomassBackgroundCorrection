@@ -9,7 +9,8 @@ DenoiseAlgorithm(AbundanceObject, MetaDataObject, NegativeObject,
   ReadAbundMatrix, CV.Filter = T, MassVar.Filter = T,
   NegCtrl.Filter = T, deltaCV.Param = 10^5, MassVar.Param = 0,
   NegCtrl.Param = 0, TaxLevel = "genus", FastqPath = "./",
-  TblatPath = "./", Measurement = "RelCoverage", ReturnContams = F,
+  TblatPath = "./", TablePath = "./", AlnStatsPath = "./",
+  Measurement = "RelCoverage", ReturnContams = F,
   GITable = "gi_tax_info.tab")
 }
 \arguments{
@@ -38,6 +39,10 @@ DenoiseAlgorithm(AbundanceObject, MetaDataObject, NegativeObject,
 \item{FastqPath}{Path to raw, gzipped fastqs. Current directory by default.}
 
 \item{TblatPath}{Path to tblat files. Current directory by default.}
+
+\item{TablePath}{Path to stored proportion tables. Current directory by default.}
+
+\item{AlnStatsPath}{Path to CV and other genome stats. Current directory by default.}
 
 \item{Measurement}{Name of column in abundance object containing measurements. Character. "RelCoverage" by default.}
 
