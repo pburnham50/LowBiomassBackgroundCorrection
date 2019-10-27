@@ -29,6 +29,12 @@ We also take note of the batches that our samples are in, and the estimated biom
 
 *If you are missing the .tblat.1 file, don’t worry! If you didn’t measure your DNA before the library preparation, don’t worry! The pipeline can be altered to ignore these steps (though the corresponding step in filtering will be ignored).*
 
+Start by cloning the LBBC GitHub repository to your local path:
+
+```
+git clone https://github.com/pburnham50/LowBiomassBackgroundCorrection
+```
+
 ### Step 1: Prepare required files
 
 In this tutorial we provide the files used to generate the figures in the linked preprint.
@@ -37,29 +43,23 @@ The grammy file (table of all microbes in all samples, and their relative abunda
 In general, if you don’t have this at this point, copy all \*.grammy.tab files into one folder and run the following from the command line from that directory:
 
 ```
-cat *.grammy.tab | sort | uniq > /path/to/LBBC/Project.grammy.tab ;
+$ cat *.grammy.tab | sort | uniq > /path/to/LBBC/Project.grammy.tab ;
 ```
 
 We also need the tblat files (genome positions of all microbial reads). These files are too large to be hosted on this repository but can be downloaded from the De Vlaminck lab's open access Dropbox storage using the following:
 
 ```
-wget ... tblats/ ;
+$ wget ... tblats/ ;
 ```
 
-### Step 2: Installing the LBBC package and preparing files
-
-Fork, clone, and download the Github directory to your preferred location.
-
-```
-git clone https://github.com/pburnham50/LowBiomassBackgroundCorrection
-```
+### Step 2: Installing the LBBC package.
 
 Start a new R session and open up the file LBBC_vignette.R
 
 Set working directory to the top-level of the LBBC directory
 
 Install the following packages if not already present:
-ineq, ggplot2, ggpubr, roxygen2, MASS, devtools, reshape2 ,taxize
+ineq, ggplot2, ggpubr, roxygen2, MASS, devtools, reshape2, taxize.
 
 In your R session this can be achieved by running the following line of code:
 
@@ -67,14 +67,27 @@ In your R session this can be achieved by running the following line of code:
 > source('extra/load_packages.R')
 ```
 
-Load your \*.grammy.tab file
-In this case we will use a combined grammy file that contains all samples. I
+### Step 3: Running the LBBC package on a urinary cell-free DNA dataset
 
-### Step 2: Running the LBBC package on a urinary cell-free DNA dataset
+At this point you are ready to follow along the R script to properly format your data and run the workhorse function of the LBBC package "DenoiseAlgorithm".
 
+Running the full script will produce a plot (similar to Fig 1b in the preprint) of the side-by-side comparison of the filtered and unfiltered datasets.
 
+Explore the effects of varying the three filtering parameters by changing their value at the beginning of the script.
+
+To reproduce the filtered two microbiome arrays (urine from kidney transplant recipients and amniotic fluid from a cohort of women suffering infection/inflammation), run the from the command line (for urine):
+
+```
+$ Rscript bin/R/LBBC.KTx.R
+```
+
+Or, for amniotic fluid:
+```
+$ Rscript bin/R/LBBC.AF.R
+```
 
 ### Acknowledgments
 
 Iwijn De Vlaminck (Cornell University) - development of methodology.
+
 Alexandre Pellan Cheng (Cornell University) - software validation.
