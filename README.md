@@ -29,23 +29,46 @@ We also take note of the batches that our samples are in, and the estimated biom
 
 *If you are missing the .tblat.1 file, don’t worry! If you didn’t measure your DNA before the library preparation, don’t worry! The pipeline can be altered to ignore these steps (though the corresponding step in filtering will be ignored).*
 
+### Step 1: Prepare required files
 
-### Step 1: Installing the LBBC package and preparing files
+In this tutorial we provide the files used to generate the figures in the linked preprint.
 
-Fork, clone, and download the Github directory to your prefered location.
-Start a new R session and open up the file ________
-Install the following packages if not already present:
-ineq, ggplot2, ggpubr, MASS, devtools, reshape2 ,taxize
+The grammy file (table of all microbes in all samples, and their relative abundances) is given as 'grammy/KTx.SMA.grammy.tab'.
+In general, if you don’t have this at this point, copy all \*.grammy.tab files into one folder and run the following from the command line from that directory:
 
+```
+cat *.grammy.tab | sort | uniq > /path/to/LBBC/Project.grammy.tab ;
+```
+
+We also need the tblat files (genome positions of all microbial reads). These files are too large to be hosted on this repository but can be downloaded from the De Vlaminck lab's open access Dropbox storage using the following:
+
+```
+wget ... tblats/ ;
+```
+
+### Step 2: Installing the LBBC package and preparing files
+
+Fork, clone, and download the Github directory to your preferred location.
+
+```
+git clone https://github.com/pburnham50/LowBiomassBackgroundCorrection
+```
+
+Start a new R session and open up the file LBBC_vignette.R
 
 Set working directory to the top-level of the LBBC directory
-Install the package as follows:
-Load your \*.grammy.tab file
-In this case we will use a combined grammy file that contains all samples. If you don’t have this at this point, copy all \*.grammy.tab files into one folder and run the following from the command line from that directory:
+
+Install the following packages if not already present:
+ineq, ggplot2, ggpubr, roxygen2, MASS, devtools, reshape2 ,taxize
+
+In your R session this can be achieved by running the following line of code:
 
 ```
-cat *.grammy.tab | sort | uniq > /path/to/LBBC/Project.grammy.tab
+> source('extra/load_packages.R')
 ```
+
+Load your \*.grammy.tab file
+In this case we will use a combined grammy file that contains all samples. I
 
 ### Step 2: Running the LBBC package on a urinary cell-free DNA dataset
 
