@@ -89,6 +89,8 @@ Or, for amniotic fluid:
 ```
 $ Rscript bin/R/LBBC.AF.R
 ```
+The figure files will appear in the directory "figs/" in .eps format.
+
 
 ### Acknowledgments
 
