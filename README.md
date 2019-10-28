@@ -68,7 +68,7 @@ ineq, ggplot2, ggpubr, roxygen2, MASS, devtools, reshape2, taxize.
 In your R session this can be achieved by running the following line of code:
 
 ```
-> source('extra/load_packages.R') ;
+> source('bin/R/load_packages.R') ;
 ```
 
 ### Step 3: Running the LBBC package on a urinary cell-free DNA dataset
