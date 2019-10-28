@@ -19,7 +19,7 @@ tax.level = "genus"
 
 ### Load abundance matrix ------------------------------------------------------------------------------------
 
-KT.abundance = LoadAbundance(dir = "./", file = "KTx.SMA.grammy.tab") ;
+KT.abundance = LoadAbundance(dir = "grammys/", file = "KTx.SMA.grammy.tab") ;
 KT.abundance = subset.data.frame(KT.abundance, superkingdom == 2) ;
 colnames(KT.abundance)[2] = "Sample" ;
 KT.abundance$Measurement = KT.abundance$RelCoverage ;
