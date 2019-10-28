@@ -39,11 +39,11 @@ git clone https://github.com/pburnham50/LowBiomassBackgroundCorrection
 
 In this tutorial we provide the files used to generate the figures in the linked preprint.
 
-The grammy file (table of all microbes in all samples, and their relative abundances) is given as 'grammy/KTx.SMA.grammy.tab'.
+The grammy file (table of all microbes in all samples, and their relative abundances) is given as 'grammys/KTx.SMA.grammy.tab'.
 In general, if you don’t have this at this point, copy all \*.grammy.tab files into one folder and run the following from the command line from that directory:
 
 ```
-$ cat *.grammy.tab | sort | uniq > /path/to/LBBC/Project.grammy.tab ;
+$ cat *.grammy.tab | sort | uniq > /path/to/LBBC/grammys/Project.grammy.tab ;
 ```
 
 We also need the tblat files (genome positions of all microbial reads). These files are too large to be hosted on this repository but can be downloaded from the De Vlaminck lab's open access Dropbox storage using the following:
