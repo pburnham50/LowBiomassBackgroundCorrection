@@ -4,8 +4,7 @@
 # Year: 2019
 
 ### Libraries ------------------------------------------------------------------------------------------------
-library(devtools); library(ggplot2); library(reshape2);
-library(MASS); library(taxize); library(ggpubr) ; library(ineq)
+source("bin/R/load_packages.R")
 
 install("./SparseMetagenomicCorrection")
 library(SparseMetagenomicCorrection)
