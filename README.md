@@ -75,7 +75,7 @@ In your R session this can be achieved by running the following line of code:
 
 At this point you are ready to follow along the R script to properly format your data and run the workhorse function of the LBBC package "DenoiseAlgorithm".
 
-Running the full script will produce a plot (similar to Fig 1b in the preprint) of the side-by-side comparison of the filtered and unfiltered datasets.
+Running the full script will produce a plot (similar to Fig 1b in the preprint) of the side-by-side comparison of the filtered and unfiltered datasets. You can compare your output with what should be produced by viewing the generated figure (figs/before_after_vignette.png).
 
 Explore the effects of varying the three filtering parameters by changing their value at the beginning of the script.
 

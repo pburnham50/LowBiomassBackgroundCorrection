@@ -19,7 +19,7 @@ path.metadata = "metadata/" # path to metadata files
 path.reads = "total_reads/" # path to tables with total number of reads for each sample
 path.stats = "aln_stats/" # path to directory where CV tables are stored.
 path.tblat = "tblats/" # path to where BLAST alignment output for each sample is stored.
-
+path.figs = "figs/" # path to figure
 
 ### Parameters -----------------------------------------------------------------------------------------------
 
@@ -162,7 +162,7 @@ arrange.fig = ggarrange(withoutfilt, withfilt, common.legend = T, ncol = 2, nrow
 
 
 if (export.eps){
-  pdf(file=paste0("./LBBCpaper.example.eps"),
+  pdf(file=paste0(path.figs, "LBBC_vignette.eps"),
       width=6.5,height=3.5, paper="special",bg="white",
       fonts="Helvetica", colormodel="cmyk", pointsize = 1)}
 
