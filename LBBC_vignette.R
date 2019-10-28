@@ -1,38 +1,33 @@
-### Script for training
+### Vignette for Low Biomass Background Correction method.
+# Filename: LBBC_vignette.R
+# Author: Philip Burnham
+# Year: 2019
 
 ### Libraries ------------------------------------------------------------------------------------------------
-require(devtools); require(ggplot2); library(reshape2); library(roxygen2)
+library(devtools); library(ggplot2); library(reshape2);
 library(MASS); library(taxize); library(ggpubr) ; library(ineq)
 
-setwd("~/Documents/GitHub/LowBiomassBackgroundCorrection/") #Path to Git cloned directory
 install("./SparseMetagenomicCorrection")
 library(SparseMetagenomicCorrection)
 
 ### Parameters -----------------------------------------------------------------------------------------------
-export.eps = F
 
-# tweak these to change the filtered abundance 
+export.eps = F
 deltaCV.maximum = 2.5
 Batch.var.log.min = -6
 Negative.ctrl.coef.max = 10
-
-tax.level = "genus" # other choices: "species", "family"
-
-path.grammy = "grammys/"
-path.metadata = "metadata/"
-path.reads = "total_reads/"
-path.tblat = "tblats/"
+tax.level = "genus"
 
 ### Load abundance matrix ------------------------------------------------------------------------------------
 
-KT.abundance = LoadAbundance(dir = path.grammy, file = "KTx.SMA.grammy.tab") ;
+KT.abundance = LoadAbundance(dir = "./", file = "KTx.SMA.grammy.tab") ;
 KT.abundance = subset.data.frame(KT.abundance, superkingdom == 2) ;
 colnames(KT.abundance)[2] = "Sample" ;
 KT.abundance$Measurement = KT.abundance$RelCoverage ;
 
 ### Load metadata matrices -----------------------------------------------------------------------------------
-clinical.metadata = data.frame(read.table(paste0(path.metadata,"KTx_SMA.metadata.upd.tab"), header = T, sep = "\t")) ;
-lab.metadata = data.frame(read.table(paste0(path.metadata,"cfDNA_012519.csv"),header = T, sep = ",",fill = T)) ;
+clinical.metadata = data.frame(read.table("./KTx_SMA.metadata.upd.tab", header = T, sep = "\t")) ;
+lab.metadata = data.frame(read.table("./cfDNA_012519.csv",header = T, sep = ",",fill = T)) ;
 lab.metadata = lab.metadata[lab.metadata$Study_name == "KTx",] ;
 
 colnames(lab.metadata)[1] = "Sample"
@@ -53,41 +48,42 @@ KT.meta = AddMetaData(MetaDataObject = KT.meta,
                       ParameterName = "Biomass") ;
 
 KT.meta = AddMetaData(MetaDataObject = KT.meta,
-                      ParameterFrame = subset.data.frame(clinical.metadata, 
+                      ParameterFrame = subset.data.frame(clinical.metadata,
                                                          select = c("Sample", "Rec.gender")),
                       ParameterName = "R.gender") ;
 
 KT.meta = AddMetaData(MetaDataObject = KT.meta,
-                      ParameterFrame = subset.data.frame(clinical.metadata, 
+                      ParameterFrame = subset.data.frame(clinical.metadata,
                                                          select = c("Sample", "Status")),
                       ParameterName = "Status") ;
 
 KT.meta = AddMetaData(MetaDataObject = KT.meta,
-                      ParameterFrame = subset.data.frame(clinical.metadata, 
+                      ParameterFrame = subset.data.frame(clinical.metadata,
                                                          select = c("Sample", "Bacteria.genus")),
                       ParameterName = "CI.genus") ;
 
 ### Load abundance matrix ------------------------------------------------------------------------------------
-# Raw data path isn't necessary if the total reads table is provided.
-Read.Abund.Matrix = TotalReadsGen(KT.meta, 
-                                  TotalReadsOutput = paste0(path.reads,"KTmeta.totalreads.tab"),
-                                  RawDataPath = "~") ; 
+Read.Abund.Matrix = TotalReadsGen(KT.meta,
+                                  TotalReadsOutput = "./KTmeta.totalreads.tab",
+                                  RawDataPath = "/workdir/Data/KTx/BKVN/") ;
+
 colnames(KT.abundance)[2] = "Sample" ;
 
 ### Load taxa from negative controls --------------------------------------------------------------
-negatives = SetNegativeControl(sample.vector = paste0("MC",LETTERS[c(1:9,12:14,16:20)]),
-                               raw.data.path = "~",
-                               tblat.path = path.tblat, 
-                               table.path = path.reads)
+negatives = SetNegativeControl(sample.vector = paste0("MC",LETTERS[c(1:9,11:14,16:20)]),
+                               raw.data.path = "/workdir/Data/KTx/BKVN/",
+                               tblat.path = "./tblat_tables/")
+
 
 
 ### Denoise the abundance matrix ------------------------------------------------------------------
 with_all_filters.tab = DenoiseAlgorithm(AbundanceObject = KT.abundance, MetaDataObject = KT.meta,
                        NegativeObject = negatives, ReadAbundMatrix = Read.Abund.Matrix,
-                       CV.Filter = T, MassVar.Filter =T, NegCtrl.Filter = T,
-                       deltaCV.Param = deltaCV.maximum, MassVar.Param = Batch.var.log.min, TablePath = path.reads, AlnStatsPath = "aln_stats/",
-                       NegCtrl.Param = Negative.ctrl.coef.max,GITable = "lookups/gi_tax_info.tab",
-                       TaxLevel = tax.level, FastqPath = "./",  TblatPath = path.tblat)
+                       CV.Filter = T, MassVar.Filter = T, NegCtrl.Filter = T,
+                       deltaCV.Param = deltaCV.maximum, MassVar.Param = Batch.var.log.min,
+                       NegCtrl.Param = Negative.ctrl.coef.max,
+                       TaxLevel = tax.level, FastqPath = "./",
+                       TblatPath = "./tblat_tables/")
 
 final.withfilt.tab = merge(with_all_filters.tab, KT.meta, "Sample")
 
@@ -95,9 +91,13 @@ final.withfilt.tab = merge(with_all_filters.tab, KT.meta, "Sample")
 # we can also look at what happens if you don't apply any filter
 with_no_filters.tab = DenoiseAlgorithm(AbundanceObject = KT.abundance,MetaDataObject = KT.meta,
                        NegativeObject = negatives,ReadAbundMatrix = Read.Abund.Matrix,
-                       CV.Filter = F, MassVar.Filter = F,NegCtrl.Filter = F)
+                       CV.Filter = F, MassVar.Filter = F,NegCtrl.Filter = F,
+                       TaxLevel = tax.level, FastqPath = "./",
+                       TblatPath = "./tblat_tables/")
 
 final.withoutfilt.tab = merge(with_no_filters.tab, KT.meta, "Sample")
+
+
 
 ### Plot  -----------------------------------------------------------------------------------------
 
@@ -116,7 +116,7 @@ withfilt = ggplot(final.withfilt.tab,aes(Sample,Name))+
                   scale_fill_gradient2(low = "blue", mid = "grey",high = "red",
                                        midpoint = 0, limits = c(-4,4))+
                   theme_bw()+ xlab("Samples")+
-                  theme(axis.text.x=element_blank(), axis.title.y=element_blank(), 
+                  theme(axis.text.x=element_blank(), axis.title.y=element_blank(),
                         axis.title.x=element_text(family="Helvetica",size = 8),
                         axis.text.y=element_text(family="Helvetica",size = 8),
                         strip.background = element_blank(),
@@ -126,14 +126,14 @@ withfilt = ggplot(final.withfilt.tab,aes(Sample,Name))+
                         legend.text = element_text(family="Helvetica",size = 8))
 
 withoutfilt = ggplot(final.withoutfilt.tab[final.withoutfilt.tab$Name %in% final.withfilt.tab$Name,],aes(Sample,Name))+
-                  facet_grid(UTI~paste0(R.gender,"\n",substr(CI.genus,1,3)), 
+                  facet_grid(UTI~paste0(R.gender,"\n",substr(CI.genus,1,3)),
                              scales = "free", space = "free")+
                   geom_tile(aes(fill=log10(Measurement)),col="black")+
                   geom_blank(data = KT.meta,aes(Sample,Name))+
                   scale_fill_gradient2(low = "blue", mid = "grey",high = "red",
                                        midpoint = 0, limits = c(-4,4))+
                   theme_bw()+ xlab("Samples")+
-                  theme(axis.text.x=element_blank(), axis.title.y=element_blank(), 
+                  theme(axis.text.x=element_blank(), axis.title.y=element_blank(),
                         axis.title.x=element_text(family="Helvetica",size = 8),
                         axis.text.y=element_text(family="Helvetica",size = 8),
                         strip.background = element_blank(),
@@ -151,5 +151,4 @@ if (export.eps){
       fonts="Helvetica", colormodel="cmyk", pointsize = 1)}
 
 arrange.fig
-
 if (export.eps){ dev.off()}
