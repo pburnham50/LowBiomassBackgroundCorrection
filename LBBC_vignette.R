@@ -4,29 +4,47 @@
 # Year: 2019
 
 ### Libraries ------------------------------------------------------------------------------------------------
-source("bin/R/load_packages.R")
+source("bin/R/load_packages.R") # install and load required packages
 
-install("./SparseMetagenomicCorrection")
+# !!! set path to the main directory of the LBBC Github Repo
+#setwd("/path/to/GitHub/LowBiomassBackgroundCorrection/")      # <------- Fix this to proper directory, uncomment and run.
+
+# install and load the package to perform filtering
+install("./SparseMetagenomicCorrection") 
 library(SparseMetagenomicCorrection)
+
+# set relavant path information (relative to LBBC cloned directory)
+path.grammy = "grammys/"   # path to grammy files
+path.metadata = "metadata/" # path to metadata files
+path.reads = "total_reads/" # path to tables with total number of reads for each sample
+path.stats = "aln_stats/" # path to directory where CV tables are stored.
+path.tblat = "tblats/" # path to where BLAST alignment output for each sample is stored.
+
 
 ### Parameters -----------------------------------------------------------------------------------------------
 
+# print plot in window by setting to FALSE
 export.eps = F
-deltaCV.maximum = 2.5
-Batch.var.log.min = -6
-Negative.ctrl.coef.max = 10
-tax.level = "genus"
+
+# set parameters
+deltaCV.maximum = 2.5 # controls filtering based on genome sequencing homogeneity
+Batch.var.log.min = -6 # controls filtering based on batch effects
+Negative.ctrl.coef.max = 10 # controls filtering based on comparison to negative control
+
+# determine taxonomic level for aggregation
+tax.level = "genus" # other useful options are "family" and "species"
 
 ### Load abundance matrix ------------------------------------------------------------------------------------
 
-KT.abundance = LoadAbundance(dir = "grammys/", file = "KTx.SMA.grammy.tab") ;
-KT.abundance = subset.data.frame(KT.abundance, superkingdom == 2) ;
+KT.abundance = LoadAbundance(dir = path.grammy, file = "KTx.SMA.grammy.tab") ;
+KT.abundance = subset.data.frame(KT.abundance, superkingdom == 2) ; # here we select only bacteria
+
 colnames(KT.abundance)[2] = "Sample" ;
-KT.abundance$Measurement = KT.abundance$RelCoverage ;
+KT.abundance$Measurement = KT.abundance$RelCoverage ; # setting the measurement of interest to the relative genomic coverage.
 
 ### Load metadata matrices -----------------------------------------------------------------------------------
-clinical.metadata = data.frame(read.table("./KTx_SMA.metadata.upd.tab", header = T, sep = "\t")) ;
-lab.metadata = data.frame(read.table("./cfDNA_012519.csv",header = T, sep = ",",fill = T)) ;
+clinical.metadata = data.frame(read.table(paste0(path.metadata,"KTx_SMA.metadata.upd.tab"), header = T, sep = "\t")) ;
+lab.metadata = data.frame(read.table(paste0(path.metadata,"cfDNA_012519.csv"),header = T, sep = ",",fill = T)) ;
 lab.metadata = lab.metadata[lab.metadata$Study_name == "KTx",] ;
 
 colnames(lab.metadata)[1] = "Sample"
@@ -63,26 +81,25 @@ KT.meta = AddMetaData(MetaDataObject = KT.meta,
 
 ### Load abundance matrix ------------------------------------------------------------------------------------
 Read.Abund.Matrix = TotalReadsGen(KT.meta,
-                                  TotalReadsOutput = "./KTmeta.totalreads.tab",
-                                  RawDataPath = "/workdir/Data/KTx/BKVN/") ;
+                                  TotalReadsOutput = paste0(path.reads,"KTmeta.totalreads.tab"),
+                                  RawDataPath = "./") ; # raw data path is where fastqs are stored. not necessart for this.
 
 colnames(KT.abundance)[2] = "Sample" ;
 
 ### Load taxa from negative controls --------------------------------------------------------------
-negatives = SetNegativeControl(sample.vector = paste0("MC",LETTERS[c(1:9,11:14,16:20)]),
-                               raw.data.path = "/workdir/Data/KTx/BKVN/",
-                               tblat.path = "./tblat_tables/")
+negatives = SetNegativeControl(sample.vector = paste0("MC",LETTERS[c(1:9,12:14,16:20)]),
+                               raw.data.path = "./",table.path = path.reads,
+                               tblat.path = path.tblat)
 
 
 
 ### Denoise the abundance matrix ------------------------------------------------------------------
 with_all_filters.tab = DenoiseAlgorithm(AbundanceObject = KT.abundance, MetaDataObject = KT.meta,
                        NegativeObject = negatives, ReadAbundMatrix = Read.Abund.Matrix,
-                       CV.Filter = T, MassVar.Filter = T, NegCtrl.Filter = T,
-                       deltaCV.Param = deltaCV.maximum, MassVar.Param = Batch.var.log.min,
-                       NegCtrl.Param = Negative.ctrl.coef.max,
-                       TaxLevel = tax.level, FastqPath = "./",
-                       TblatPath = "./tblat_tables/")
+                       CV.Filter = T, MassVar.Filter = T, NegCtrl.Filter = T,TaxLevel = tax.level,
+                       deltaCV.Param = deltaCV.maximum, MassVar.Param = Batch.var.log.min,NegCtrl.Param = Negative.ctrl.coef.max,
+                        FastqPath = "./",TablePath = path.reads, TblatPath = path.tblat, AlnStatsPath = path.stats,
+                       GITable = "lookups/gi_tax_info.tab")
 
 final.withfilt.tab = merge(with_all_filters.tab, KT.meta, "Sample")
 
@@ -91,14 +108,14 @@ final.withfilt.tab = merge(with_all_filters.tab, KT.meta, "Sample")
 with_no_filters.tab = DenoiseAlgorithm(AbundanceObject = KT.abundance,MetaDataObject = KT.meta,
                        NegativeObject = negatives,ReadAbundMatrix = Read.Abund.Matrix,
                        CV.Filter = F, MassVar.Filter = F,NegCtrl.Filter = F,
-                       TaxLevel = tax.level, FastqPath = "./",
-                       TblatPath = "./tblat_tables/")
+                       TaxLevel = tax.level, GITable = "lookups/gi_tax_info.tab")
 
 final.withoutfilt.tab = merge(with_no_filters.tab, KT.meta, "Sample")
 
 
 
 ### Plot  -----------------------------------------------------------------------------------------
+# here we plot a comparison of the resulting filtered microbiome across samples, with and without filtering.
 
 final.withfilt.tab$UTI = !(final.withfilt.tab$Name %in% c("Escherichia", "Enterococcus"))
 final.withoutfilt.tab$UTI = !(final.withoutfilt.tab$Name %in% c("Escherichia", "Enterococcus"))
