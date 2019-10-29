@@ -4,6 +4,9 @@ Author: Philip Burnham (phil.burnham.50@gmail.com)
 
 Link to preprint: https://www.biorxiv.org/content/10.1101/734756v1
 
+![GitHub Logo](figs/LBBC_pipeline.png)
+Format: ![Alt Text](url)
+
 ## Outline
 
 The following is a guide to reduce the background contamination of microbial reads in a cell-free DNA sequencing set. We will show how to use the pipeline and its functions to denoise a dataset from urine samples taken from patients who had received kidney transplants at the New York Presbyterian Hospital in NYC, USA. The data includes samples with a matched same day diagnosis of either E. coli or Enterococcus urinary tract infection. The dataset also includes patients who had no observable bacteria in the urinary tract, and who had no UTI during the time they were monitored (this is our control group).
@@ -46,11 +49,13 @@ In general, if you don’t have this at this point, copy all \*.grammy.tab files
 $ cat *.grammy.tab | sort | uniq > /path/to/LBBC/grammys/Project.grammy.tab ;
 ```
 
-We also need the tblat files (genome positions of all microbial reads). These files are too large to be hosted on this repository but can be downloaded from the De Vlaminck lab's open access Dropbox storage using the following:
+We also need the tblat files (genome positions of all microbial reads). Some of these files are too large to be hosted on this repository, but will soon be made available from the De Vlaminck lab's open access Dropbox storage. You can download them into the tblats/ folder using:
 
 ```
-$ wget ... tblats/ ;
+$ wget Storage@DeVlaminckLab/MicrobialcfDNA/LBBC/tblats/* tblats/ ;
 ```
+
+For now, cloning the repository will copy smaller files over. The CV calculation for all sample files has already been processed and corresponding output files will also be cloned (into the aln_stats/ folder). This will ensure the vignette and figure reproducing scripts can be run.
 
 ### Step 2: Installing the LBBC package.
 
