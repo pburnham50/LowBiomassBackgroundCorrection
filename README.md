@@ -56,7 +56,7 @@ $ wget Storage@DeVlaminckLab/MicrobialcfDNA/LBBC/tblats/* tblats/ ;
 
 For now, cloning the repository will copy smaller files over. The CV calculation for all sample files has already been processed and corresponding output files will also be cloned (into the aln_stats/ folder). This will ensure the vignette and figure reproducing scripts can be run.
 
-### Step 2: Installing the LBBC package.
+### Step 2: Installing the LBBC package
 
 Start a new R session and open up the file LBBC_vignette.R in RStudio.
 
