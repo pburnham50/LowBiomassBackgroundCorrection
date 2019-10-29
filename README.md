@@ -12,6 +12,14 @@ The following is a guide to reduce the background contamination of microbial rea
 
 The pipeline is implemented in R, and takes advantage of two observations: 1) the variation in coverage across microbial genomes, 2) how the abundance of bacteria changes with the total mass of DNA added to library preparation. In (1), microbial genomes with high coverage variability (measured by the coefficient of variation in coverage) are interpreted as digital noise. In (2), if the representation of a microbe in a batch decreases with increasing amounts of input biomass, it is likely a contaminant, presenting itself at low abundance.
 
+While it is not included in the vignette, we have utilized a weighted false positive/negative scoring scheme to determine the optimal parameters to use for filtering. This is shown in the bin/R/LBBC.KTx.R file and described in detail in our methods. In effect it allows for optimal parametrization based on the needs of the diagnostic - e.g. to reduce false negatives the score can be weighted to heavily penalize false negatives over false positives when comparing to gold standard clinical measurements. One effect of this technique is that the resulting filtered microbiome is heavily sensitive to the chosen weights (and subsequently the parameters).
+
+To ensure reproducibility, we implore potential users of this tool to include a list of the following:
+- True positive, false positive, true negative, false negative, and unidentified weight vector (if used).
+- Maximum allowed CV (unitless).
+- Minimum allowed batch variation (reported in squared-nanograms/-picrograms).
+- The multiplier used to set the minimum abundance present in negative controls.
+
 ## Procedure
 
 ### Step 0: Collecting the needed files
