@@ -1,0 +1,45 @@
+Sample,Batch-ext-date,Batch-lp-date,cfDNA-ext-raw-conc,cfDNA-ext-input-raw,cfDNA-lp-input-raw,Cohort,Sex,IL_6,IL6_grade,AF_RBC,AF_Gluco,AF_LDH,AF_WBC,AF_Culture,Group,IBIS,IBIS_Bacteria_1,IBIS_Bacteria_2,IBIS_Euk_1,Cohort2
+HUZ260775.AF,102017,112817,0.344,59.0,4.1,Healthy,Male,5,Low,200,20,-99,0,Negative,Normal,Not Done,,,,NormalNegative
+CHI089323.AF,050218,,3.3,565.7,39.6,Chorio,Male,10370.628,Elevated,NA,9,NA,25,Negative,Chorio,Negative,,,,ChorioNegative
+HUZ694877.AF,092917,102417,0.452,77.5,5.4,Chorio,Male,105,Low,28,21,-99,2,Negative,Chorio,Negative,,,,ChorioNegative
+HUZ422074.AF,101317,120617,4.4,754.3,52.8,Healthy,Male,1090.8,Low,-99,-99,-99,-99,Negative,Normal,Not Done,,,,NormalNegative
+HUZ694453.AF,100417,120617,1.77,303.4,21.2,PTL,Female,11480,Elevated,328,8,-99,70,Positive,Chorio,Positive,Gardnerella vaginalis,Ureaplasma urealyticum,,ChorioPositive
+HUZ695075.AF,092917,102417,0.563,96.5,6.8,Chorio,Male,1160,Low,28,-1,-99,6,Negative,Chorio,Negative,,,,ChorioNegative
+HUZ695384.AF,100417,110317,14.5,2485.7,174.0,PTL,Male,128600,Elevated,1075,1,-99,878,Positive,Chorio,Positive,Fusobacterium nucleatum,,,ChorioPositive
+HUZ286696.AF,102017,110317,0.644,110.4,7.7,Healthy,Male,137,Low,10,21,273,0,Negative,Normal,Not Done,,,,NormalNegative
+HUZ217739.AF,102017,120617,0.691,118.5,8.3,Healthy,Female,140,Low,4126,9,220,3,Negative,Normal,Not Done,,,,NormalNegative
+CHI475935.AF,043018,,0.71,121.7,8.5,Chorio,Female,14979.305,Elevated,NA,9,NA,85,Negative,Chorio,Negative,,,,ChorioNegative
+HUZ204705.AF,102017,112817,0.453,77.7,5.4,Healthy,Male,161,Low,61,12,84,2,Negative,Normal,Not Done,,,,NormalNegative
+HUZ661766.AF,092917,102417,0.504,86.4,6.0,Chorio,Female,190,Low,21,6,-99,0,Negative,Chorio,Negative,,,,ChorioNegative
+HUZ695323.AF,101317,112817,3.39,581.1,40.7,PTL,Male,19000,Elevated,14300,7,-99,900,Positive,Chorio,Positive,Gardnerella vaginalis,,,ChorioPositive
+CHI520236.AF,043018,,8.4,1440.0,100.8,Chorio,Male,19034.888,Elevated,NA,9,NA,2600,Negative,Chorio,Negative,,,,ChorioNegative
+HUZ603273.AF,100417,112817,0.79,135.4,9.5,PTL,Male,19515,Elevated,3,10,0,-99,Positive,Chorio,Positive,Streptococcus agalactiae,,,ChorioPositive
+HUZ222017.AF,102017,112817,0.922,158.1,11.1,Healthy,Female,205,Low,243,18,336,8,Negative,Normal,Not Done,,,,NormalNegative
+HUZ247134.AF,100417,110317,0.757,129.8,9.1,Chorio,Male,208,Low,-99,10,-99,-99,Negative,Chorio,Negative,,,,ChorioNegative
+HUZ426529.AF,102017,120617,0.392,67.2,4.7,Healthy,Male,235,Low,0,20,,0,Negative,Normal,Not Done,,,,NormalNegative
+HUZ288036.AF,102017,110317,0.448,76.8,5.4,Healthy,Male,278,Low,25,10,326,1,Negative,Normal,Not Done,,,,NormalNegative
+HUZ695248.AF,100417,110317,1.36,233.1,16.3,PTL,Female,28500,Elevated,40,1,-99,530,Positive,Chorio,Positive,Streptococcus agalactiae,,,ChorioPositive
+HUZ695731.AF,101317,110317,23.3,3994.3,279.6,PTL,Female,29300,Elevated,34950,0.9,-99,1650,Positive,Chorio,Positive,Ureaplasma urealyticum,Lactobacillus crispatus,Candida albicans,ChorioPositive
+CHI475355.AF,043018,,0.978,167.7,11.7,Chorio,Female,3069.305,Elevated,NA,10,NA,25,Negative,Chorio,Negative,,,,ChorioNegative
+HUZ668860.AF,050218,,0.28,48.0,3.4,PTL,Male,3080,Elevated,8400,45,-99,0,Negative,PTL,Negative,,,,PTLNegative
+CHI077906.AF,050218,,0.304,52.1,3.6,Chorio,Male,3267.456,Elevated,NA,9,NA,0,Negative,Chorio,Negative,,,,ChorioNegative
+HUZ287915.AF,102017,110317,0.493,84.5,5.9,Healthy,Female,330,Low,3,19,303,5,Negative,Normal,Not Done,,,,NormalNegative
+HUZ279531.AF,101317,110317,1.86,318.9,22.3,Healthy,Male,414,Low,30,17,295,450,Negative,Normal,Not Done,,,,NormalNegative
+HUZ688815.AF,092917,102417,0.332,56.9,4.0,Chorio,Female,416,Low,4,6,-99,0,Negative,Chorio,Negative,,,,ChorioNegative
+HUZ688737.AF,100417,112817,1.68,288.0,20.2,PTL,Female,41600,Elevated,194,1,-99,19,Positive,Chorio,Positive,Gardnerella vaginalis,Streptococcus anginosus,,ChorioPositive
+CHI132867.AF,050218,,3.26,558.9,39.1,Chorio,Female,4738.886,Elevated,NA,24,NA,0,Negative,Chorio,Negative,,,,ChorioNegative
+HUZ694874.AF,043018,,0.558,95.7,6.7,PTL,Male,4750,Elevated,0,37,-99,1,Negative,PTL,Negative,,,,PTLNegative
+HUZ422168.AF,101317,110317,3.04,521.1,36.5,Healthy,Male,479,Low,20,20,-99,90,Negative,Normal,Not Done,,,,NormalNegative
+HUZ688834.AF,100417,112817,13.2,2262.9,158.4,PTL,Male,51300,Elevated,1510,1,576,340,Positive,Chorio,Positive,Streptococcus agalactiae,Ureaplasma parvum,,ChorioPositive
+HUZ630890.AF,092917,102417,0.262,44.9,3.1,Chorio,Female,540,Low,12,5,-99,9,Negative,Chorio,Negative,,,,ChorioNegative
+HUZ688774.AF,050218,,0.872,149.5,10.5,Chorio,Female,5470,Elevated,4,3,-99,2,Negative,Chorio,Negative,,,,ChorioNegative
+HUZ688863.AF,050218,,0.306,52.5,3.7,PTL,Male,5570,Elevated,12,19,-99,3,Negative,PTL,Negative,,,,PTLNegative
+HUZ695379.AF,050218,,0.448,76.8,5.4,Chorio,Male,5760,Elevated,1280,1,-99,3,Negative,Chorio,Negative,,,,ChorioNegative
+HUZ424454.AF,101317,120617,0.606,103.9,7.3,Healthy,Female,577,Low,690,15,-99,0,Negative,Normal,Not Done,,,,NormalNegative
+HUZ287757.AF,101317,112817,1.91,327.4,22.9,Healthy,Female,615,Low,25,10,413,95,Negative,Normal,Not Done,,,,NormalNegative
+HUZ216631.AF,101317,120617,1.07,183.4,12.8,Healthy,Female,646,Low,2000,9,365,2,Negative,Normal,Not Done,,,,NormalNegative
+HUZ668756.AF,043018,,0.632,108.3,7.6,PTL,Male,68700,Elevated,25,8,432,48,Negative,PTL,Negative,,,,PTLNegative
+HUZ688725.AF,050218,,0.882,151.2,10.6,Chorio,Female,71270,Elevated,163,11,-99,30,Negative,Chorio,Negative,,,,ChorioNegative
+HUZ696809.AF,100417,120617,5.19,889.7,62.3,PTL,Female,7760,Elevated,2963,1,-99,191,Positive,Chorio,Positive,Ureaplasma parvum,,,ChorioPositive
+HUZ293712.AF,101317,112817,0.666,114.2,8.0,Healthy,Female,840,Low,0,15,238,0,Negative,Normal,Not Done,,,,NormalNegative
+HUZ695190.AF,100417,120617,3.29,564.0,39.5,PTL,Male,90100,Elevated,1093,0,-99,3,Positive,Chorio,Positive,Ureaplasma parvum,,,ChorioPositive
