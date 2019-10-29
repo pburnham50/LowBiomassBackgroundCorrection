@@ -4,7 +4,7 @@ Author: Philip Burnham (phil.burnham.50@gmail.com)
 
 Link to preprint: https://www.biorxiv.org/content/10.1101/734756v1
 
-![GitHub Logo](figs/LBBC_pipeline.png)
+![GitHub Logo](/figs/LBBC_pipeline.png)
 Format: ![Alt Text](url)
 
 ## Outline
