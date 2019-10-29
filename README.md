@@ -1,10 +1,10 @@
 # Low Biomass Background Correction
 
-![GitHub Logo](/figs/LBBC_pipeline.png)
-
 Author: Philip Burnham (phil.burnham.50@gmail.com)
 
 Link to preprint: https://www.biorxiv.org/content/10.1101/734756v1
+
+![GitHub Logo](/figs/LBBC_pipeline.png)
 
 ## Outline
 
