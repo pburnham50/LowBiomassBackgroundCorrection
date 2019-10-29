@@ -42,7 +42,7 @@ We also take note of the batches that our samples are in, and the estimated biom
 Start by cloning the LBBC GitHub repository to your local path:
 
 ```
-git clone https://github.com/pburnham50/LowBiomassBackgroundCorrection
+$ git clone https://github.com/pburnham50/LowBiomassBackgroundCorrection
 ```
 
 ### Step 1: Prepare required files
