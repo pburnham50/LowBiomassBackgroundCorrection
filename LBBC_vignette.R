@@ -27,8 +27,8 @@ path.figs = "figs/" # path to figure
 export.eps = F
 
 # set parameters
-deltaCV.maximum = 2.5 # controls filtering based on genome sequencing homogeneity
-Batch.var.log.min = -6 # controls filtering based on batch effects
+deltaCV.maximum = 2 # controls filtering based on genome sequencing homogeneity
+Batch.var.log.min = -5.5 # controls filtering based on batch effects
 Negative.ctrl.coef.max = 10 # controls filtering based on comparison to negative control
 
 # determine taxonomic level for aggregation
@@ -87,7 +87,7 @@ Read.Abund.Matrix = TotalReadsGen(KT.meta,
 colnames(KT.abundance)[2] = "Sample" ;
 
 ### Load taxa from negative controls --------------------------------------------------------------
-negatives = SetNegativeControl(sample.vector = paste0("MC",LETTERS[c(1:9,12:14,16:20)]),
+negatives = SetNegativeControl(sample.vector = paste0("MC",LETTERS[c(1:9,11:14,16:20)]),
                                raw.data.path = "./",table.path = path.reads,
                                tblat.path = path.tblat)
 
@@ -131,7 +131,7 @@ withfilt = ggplot(final.withfilt.tab,aes(Sample,Name))+
                   geom_blank(data = KT.meta,aes(Sample,Name))+
                   scale_fill_gradient2(low = "blue", mid = "grey",high = "red",
                                        midpoint = 0, limits = c(-4,4))+
-                  theme_bw()+ xlab("Samples")+
+                  theme_bw()+ xlab("Samples -- AFTER")+
                   theme(axis.text.x=element_blank(), axis.title.y=element_blank(),
                         axis.title.x=element_text(family="Helvetica",size = 8),
                         axis.text.y=element_text(family="Helvetica",size = 8),
@@ -148,7 +148,7 @@ withoutfilt = ggplot(final.withoutfilt.tab[final.withoutfilt.tab$Name %in% final
                   geom_blank(data = KT.meta,aes(Sample,Name))+
                   scale_fill_gradient2(low = "blue", mid = "grey",high = "red",
                                        midpoint = 0, limits = c(-4,4))+
-                  theme_bw()+ xlab("Samples")+
+                  theme_bw()+ xlab("Samples -- BEFORE")+
                   theme(axis.text.x=element_blank(), axis.title.y=element_blank(),
                         axis.title.x=element_text(family="Helvetica",size = 8),
                         axis.text.y=element_text(family="Helvetica",size = 8),

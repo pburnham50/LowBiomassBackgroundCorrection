@@ -116,6 +116,7 @@ DenoiseAlgorithm <- function(AbundanceObject, MetaDataObject, NegativeObject, Re
                                                          contam.set = NegativeObject,out.path = TablePath,
                                                          factor.contam = NegCtrl.Param,
                                                          raw.data.path = FastqPath,
+                                                         ReadAbundMatrix = ReadAbundMatrix,
                                                          tblat.path = TblatPath))
     }
 

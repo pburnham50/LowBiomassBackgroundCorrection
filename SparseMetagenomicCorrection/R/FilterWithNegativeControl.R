@@ -7,6 +7,7 @@
 #' @param raw.data.path Pathway to find zipped fastq files. Character.
 #' @param tblat.path Pathway to alignment files (tblat.1 format). Character.
 #' @param out.path Pathway to store total reads. Character.
+#' @param ReadAbundMatrix Matrix listing samples and read abundance.
 #' @keywords filter
 #' @import data.table
 #' @export
@@ -16,11 +17,11 @@
 FilterWithNegativeControl <- function(sample, contam.set, out.path = "./",
                                       factor.contam = 10,
                                       filter.out.list = T,
-                                      raw.data.path, tblat.path){
+                                      raw.data.path, tblat.path, ReadAbundMatrix){
 
   # create read proportion dataset
   sample.set = ReadProportions(sample = sample, out.path = out.path,
-                               raw.data.path = raw.data.path, tblat.path = tblat.path) ;
+                               raw.data.path = raw.data.path, tblat.path = tblat.path, ReadAbundMatrix = ReadAbundMatrix) ;
 
   # set the upper bound for all contaminant taxa
   contam.set$Upper = factor.contam*contam.set$Proportion ;

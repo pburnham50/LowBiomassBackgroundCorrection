@@ -5,7 +5,8 @@
 \title{ReadProportions
 This function uses the total number of raw reads and BLAST alignment info to determine the proportion of reads from each taxa. This is used for negative control analysis.}
 \usage{
-ReadProportions(sample, out.path = "./", raw.data.path, tblat.path)
+ReadProportions(sample, out.path = "./", raw.data.path, tblat.path,
+  ReadAbundMatrix = c())
 }
 \arguments{
 \item{sample}{Sample name. Character.}
@@ -15,6 +16,8 @@ ReadProportions(sample, out.path = "./", raw.data.path, tblat.path)
 \item{raw.data.path}{Pathway to find zipped fastq files. Character.}
 
 \item{tblat.path}{Pathway to alignment files (tblat.1 format). Character.}
+
+\item{ReadAbundMatrix}{Matrix listing samples and read abundance.}
 }
 \description{
 ReadProportions

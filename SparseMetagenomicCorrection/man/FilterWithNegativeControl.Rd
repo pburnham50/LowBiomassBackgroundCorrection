@@ -6,7 +6,8 @@
 This function is used to find the proportion of all taxa present in the negative controls.}
 \usage{
 FilterWithNegativeControl(sample, contam.set, out.path = "./",
-  factor.contam = 10, filter.out.list = T, raw.data.path, tblat.path)
+  factor.contam = 10, filter.out.list = T, raw.data.path, tblat.path,
+  ReadAbundMatrix)
 }
 \arguments{
 \item{sample}{Sample name. Character.}
@@ -22,6 +23,8 @@ FilterWithNegativeControl(sample, contam.set, out.path = "./",
 \item{raw.data.path}{Pathway to find zipped fastq files. Character.}
 
 \item{tblat.path}{Pathway to alignment files (tblat.1 format). Character.}
+
+\item{ReadAbundMatrix}{Matrix listing samples and read abundance.}
 }
 \description{
 FilterWithNegativeControl
