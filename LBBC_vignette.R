@@ -112,8 +112,6 @@ with_no_filters.tab = DenoiseAlgorithm(AbundanceObject = KT.abundance,MetaDataOb
 
 final.withoutfilt.tab = merge(with_no_filters.tab, KT.meta, "Sample")
 
-
-
 ### Plot  -----------------------------------------------------------------------------------------
 # here we plot a comparison of the resulting filtered microbiome across samples, with and without filtering.
 
